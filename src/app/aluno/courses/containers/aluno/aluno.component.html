@@ -5,8 +5,8 @@
     <app-aluno-list
       *ngIf="aluno$ | async as aluno; else loading"
       [aluno]="aluno"
-      (onAdd)="onAdd()"
-      (edit)="onEdit($event)"
+      (onAdd)="onAdd()" 
+      (edit)="onEdit($event)" 
       (remove)="onRemove($event)"
     ></app-aluno-list>
 

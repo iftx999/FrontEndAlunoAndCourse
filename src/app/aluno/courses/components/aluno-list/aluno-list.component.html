@@ -1,12 +1,12 @@
 <mat-table [dataSource]="aluno">
   <!-- Name Column -->
   <ng-container matColumnDef="nome">
-    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>nome</mat-header-cell>
     <mat-cell *matCellDef="let aluno">{{ aluno.nome }}</mat-cell>
   </ng-container>
 
-  <!-- Category Column -->
-  <ng-container matColumnDef="cpf">
+   <!-- Name Column -->
+   <ng-container matColumnDef="cpf">
     <mat-header-cell *matHeaderCellDef>cpf</mat-header-cell>
     <mat-cell *matCellDef="let aluno">{{ aluno.cpf }}</mat-cell>
   </ng-container>
@@ -17,11 +17,11 @@
       <button
         mat-mini-fab
         color="accent"
-        aria-label="Adicionar um aluno"
+        aria-label="Adicionar um curso"
         (click)="onAdd()"
         class="action-column-header"
       >
-        <mat-icon>add</mat-icon>
+        <mat-icon (click)="onAdd">add</mat-icon>
       </button>
       
     </mat-header-cell>
@@ -39,7 +39,7 @@
       <button
         mat-icon-button
         color="warn"
-        aria-label="Remover Curso"
+        aria-label="Remover aluno"
         (click)="onDelete(aluno)"
       >
         <mat-icon>delete</mat-icon>
