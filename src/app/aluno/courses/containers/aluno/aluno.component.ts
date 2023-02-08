@@ -69,13 +69,13 @@ export class AlunoComponent implements OnInit {
         this.alunoService.remove(aluno.idAluno).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Curso removido com sucesso!', 'X', {
+            this.snackBar.open('Aluno removido com sucesso!', 'X', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover curso.')
+          () => this.onError('Erro ao tentar remover aluno.')
         );
       }
     });
