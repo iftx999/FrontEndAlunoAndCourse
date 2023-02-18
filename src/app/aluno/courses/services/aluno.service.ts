@@ -22,19 +22,20 @@ export class AlunoService {
       );
   }
 
-  loadById(idAluno: string) {
-    return this.httpClient.get<Aluno>(`${this.API}/${idAluno}`);
+  loadById(id: string) {
+    return this.httpClient.get<Aluno>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Aluno>) {
-   console.log(record);
+    // console.log(record);
     if (record.idAluno) {
-     console.log('update');
+      // console.log('update');
       return this.update(record);
     }
     // console.log('create');
     return this.create(record);
   }
+  
 
   private create(record: Partial<Aluno>) {
     return this.httpClient.post<Aluno>(this.API, record).pipe(first());
