@@ -27,7 +27,9 @@ export class CoursesService {
   }
 
   save(record: Partial<Course>) {
-    // console.log(record);
+     console.log(record);
+           console.log('cai aqui antes do if');
+
     if (record._id) {
       console.log('cai aqui');
       // console.log('update');
