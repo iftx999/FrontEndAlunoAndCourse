@@ -22,8 +22,8 @@ export class AlunoService {
       );
   }
 
-  loadById(idAluno: string) {
-    return this.httpClient.get<Aluno>(`${this.API}/${idAluno}`);
+  loadById(id: string) {
+    return this.httpClient.get<Aluno>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Aluno>) {
@@ -35,6 +35,7 @@ export class AlunoService {
     // console.log('create');
     return this.create(record);
   }
+  
 
   private create(record: Partial<Aluno>) {
     return this.httpClient.post<Aluno>(this.API, record).pipe(first());

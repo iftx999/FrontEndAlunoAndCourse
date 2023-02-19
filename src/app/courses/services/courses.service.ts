@@ -27,11 +27,17 @@ export class CoursesService {
   }
 
   save(record: Partial<Course>) {
-    // console.log(record);
+     console.log(record);
+           console.log('cai aqui antes do if');
+
     if (record._id) {
+      console.log('cai aqui');
       // console.log('update');
       return this.update(record);
-    }
+    
+        }
+        console.log('cai aqui create');
+
     // console.log('create');
     return this.create(record);
   }

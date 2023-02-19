@@ -14,7 +14,7 @@ import { AlunoService } from '../../services/aluno.service';
 export class AlunoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
-    id: [''],
+    idAluno: [''],
     idade: [''],
     nome: ['', [Validators.required,
     Validators.minLength(5),
@@ -33,7 +33,7 @@ export class AlunoFormComponent implements OnInit {
   ngOnInit(): void {
     const aluno: Aluno = this.route.snapshot.data['aluno'];
     this.form.setValue({
-      id: aluno.idAluno,
+      idAluno: aluno.idAluno,
       nome: aluno.nome,
       cpf: aluno.cpf,
       idade: aluno.idade,
