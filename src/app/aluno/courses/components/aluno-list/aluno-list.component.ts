@@ -13,7 +13,7 @@ export class AlunoListComponent implements OnInit {
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['nome', 'cpf', 'actions'];
+  readonly displayedColumns = ['nome', 'cpf', 'idade', 'actions'];
 
   constructor() { }
 
