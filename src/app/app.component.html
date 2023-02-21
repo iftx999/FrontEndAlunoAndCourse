@@ -2,10 +2,19 @@
   <span>CRUD Angular + Spring</span>
 </mat-toolbar>
 
-<nav>
-  <ul>
-    <li><button [routerLink]="['/aluno']">Cadastro de Aluno</button></li>
+<mat-card-actions class="actions-center">
+
   
-  </ul>
-</nav>
+</mat-card-actions>
+<mat-card-actions class="actions-center">
+  <button mat-raised-button color="primary" [routerLink]="['/aluno']">
+    Cadastro de Aluno
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="['/courses']">
+    Cadastro de Curso
+  </button>
+</mat-card-actions>
+
+
+
 <router-outlet></router-outlet>
