@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import {Component} from '@angular/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,9 @@ import {Component} from '@angular/core';
     MatToolbarModule,
     HttpClientModule,
     MatCardModule,
-    AppMaterialModule
+    AppMaterialModule,
+    MatSidenavModule,
+    MatListModule
     
   ],
   providers: [],
