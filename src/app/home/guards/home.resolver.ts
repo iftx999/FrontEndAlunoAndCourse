@@ -7,7 +7,7 @@ import { CoursesService } from '../services/home.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesResolver implements Resolve<Course> {
+export class HomeResolver implements Resolve<Course> {
 
   constructor(private service: CoursesService) { }
 

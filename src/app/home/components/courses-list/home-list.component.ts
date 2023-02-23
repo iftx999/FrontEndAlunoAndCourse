@@ -7,7 +7,7 @@ import { Course } from '../../model/home';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent implements OnInit {
+export class HomeListComponent implements OnInit {
 
   @Input() courses: Course[] = [];
   @Output() add = new EventEmitter(false);
