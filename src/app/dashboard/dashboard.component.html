@@ -1,17 +1,37 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<!-- Dashboard basica com os dados da escola -->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Dashboard</h1>
+    </mat-card-title>
+  </mat-card-header>
+</mat-card>
+
+<div>
+    <mat-grid-list cols="2" rowHeight="200px">
+        <mat-grid-tile>
+          <mat-card class="dados">
+            <mat-card-header>
+              <mat-card-title>
+                <h2>Alunos</h2>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h1>23</h1>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="dados">
+            <mat-card-header>
+              <mat-card-title>
+                <h2>Professores</h2>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h1>0</h1>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        </mat-grid-list>
 </div>
