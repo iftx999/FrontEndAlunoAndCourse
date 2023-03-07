@@ -3,19 +3,5 @@
   <span>Sistema Escolar</span>
 </mat-toolbar>
 
-<button mat-icon-button (click)="toggleSidenav()">
-  <mat-icon>menu</mat-icon>
-</button>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" opened="true">
-    <mat-toolbar>Acesso rapido Sistema Escolar </mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/aluno" routerLinkActive="active">Alunos</a>
-      <a mat-list-item routerLink="/courses" routerLinkActive="active">Courses</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-navbar></app-navbar> 
 
