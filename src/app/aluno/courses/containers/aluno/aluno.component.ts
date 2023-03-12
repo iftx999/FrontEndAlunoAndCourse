@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Aluno } from './../../model/aluno';
 import { AlunoService } from '../../services/aluno.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-aluno',
@@ -16,8 +17,10 @@ import { AlunoService } from '../../services/aluno.service';
   styleUrls: ['./aluno.component.scss']
 })
 export class AlunoComponent implements OnInit {
+  isLoading: boolean = false;
 
   aluno$: Observable<Aluno[]> | null = null;
+  form: FormGroup | undefined;
 
   constructor(
     private alunoService: AlunoService,
@@ -79,6 +82,28 @@ export class AlunoComponent implements OnInit {
         );
       }
     });
+  }
+
+  backendWarnError(text: string): void {
+    this._snackBar.open(text, 'X', {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['warning']
+    });
+  }
+  exportarPdf(): void {
+    this.isLoading = true;
+    let formObj = this.form.getRawValue();
+    this.alunoService.getRelAluno(formObj.aluno.idAluno, new Date(formObj.dataInicial), new Date(formObj.dataFinal))
+      .subscribe(file => {
+        this.alunoService.saveAs(file, 'Relatório de Comissão');
+        this.isLoading = false;
+      },
+        (err) => {
+          this.backendWarnError("A consulta não retornou nenhum dado.");
+          this.isLoading = false;
+        });
   }
 
 }

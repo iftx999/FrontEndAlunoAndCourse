@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Aluno } from '../model/aluno';
 import { delay, first, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,9 @@ export class AlunoService {
   remove(idAluno: string) {
     return this.httpClient.delete(`${this.API}/${idAluno}`).pipe(first());
   }
+
+  getRelAluno(idAluno: number): Observable<any> {
+    return this.httpClient.get(`${this.API}/${idAluno}/realAluno/print`, { responseType: 'blob' });
+  }
+
 }
