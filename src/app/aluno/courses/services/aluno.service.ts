@@ -13,6 +13,7 @@ export class AlunoService {
   private readonly API = 'api/aluno';
 
   constructor(private httpClient: HttpClient) { }
+  
 
   list() {
     return this.httpClient.get<Aluno[]>(this.API)

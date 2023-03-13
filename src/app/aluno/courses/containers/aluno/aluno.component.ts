@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Aluno } from './../../model/aluno';
 import { AlunoService } from '../../services/aluno.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-aluno',
@@ -17,17 +17,21 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./aluno.component.scss']
 })
 export class AlunoComponent implements OnInit {
+  form: FormGroup | any;
+
   isLoading: boolean = false;
 
   aluno$: Observable<Aluno[]> | null = null;
-  form: FormGroup | undefined;
 
   constructor(
     private alunoService: AlunoService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+
   ) {
     this.refresh();
   }
@@ -52,7 +56,13 @@ export class AlunoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+ 
+
+    this.form = this._formBuilder.group({
+      idAluno: [, [Validators.required]]
+         })
+  }
 
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
@@ -95,9 +105,8 @@ export class AlunoComponent implements OnInit {
   exportarPdf(): void {
     this.isLoading = true;
     let formObj = this.form.getRawValue();
-    this.alunoService.getRelAluno(formObj.aluno.idAluno, new Date(formObj.dataInicial), new Date(formObj.dataFinal))
+    this.alunoService.getRelAluno(formObj.aluno.idAluno)
       .subscribe(file => {
-        this.alunoService.saveAs(file, 'Relatório de Comissão');
         this.isLoading = false;
       },
         (err) => {
