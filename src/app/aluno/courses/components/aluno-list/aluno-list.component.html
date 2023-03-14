@@ -49,7 +49,13 @@
       >
         <mat-icon>delete</mat-icon>
       </button>
+
+      <button mat-flat-button (click)="onExport(aluno)" color="primary">
+        <mat-icon>save_alt</mat-icon> Imprimir
+    </button>
     </mat-cell>
+
+  
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

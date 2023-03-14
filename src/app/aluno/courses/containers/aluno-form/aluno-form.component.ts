@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Aluno } from '../../model/aluno';
@@ -13,8 +13,12 @@ import { AlunoService } from '../../services/aluno.service';
 })
 export class AlunoFormComponent implements OnInit {
 
+
+  isLoading: boolean = false;
+
+
   form = this.formBuilder.group({
-    idAluno: [''],
+     idAluno: [''],
     idade: [''],
     nome: ['', [Validators.required,
     Validators.minLength(5),
@@ -77,4 +81,29 @@ export class AlunoFormComponent implements OnInit {
 
     return 'Campo Inválido';
   }
+  backendWarnError(text: string): void {
+    this.snackBar.open(text, 'X', {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['warning']
+    });
+  }
+
+  onExport(): void {
+    this.isLoading = true;
+    let formObj = this.form.getRawValue();
+    this.service.getRelAluno(formObj.idAluno)
+          .subscribe(file => {
+            this.service.saveAs(file, 'Relatório Produtos');
+        this.isLoading = false;
+            },
+        (err) => {
+          this.backendWarnError("A consulta não retornou nenhum dado.");
+          this.isLoading = false;
+        });
+  }
+
+
+ 
 }

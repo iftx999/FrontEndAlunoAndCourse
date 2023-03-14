@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Aluno } from './../../model/aluno';
 import { AlunoService } from '../../services/aluno.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-aluno',
@@ -16,6 +17,9 @@ import { AlunoService } from '../../services/aluno.service';
   styleUrls: ['./aluno.component.scss']
 })
 export class AlunoComponent implements OnInit {
+  form: FormGroup | any;
+
+  isLoading: boolean = false;
 
   aluno$: Observable<Aluno[]> | null = null;
 
@@ -24,7 +28,10 @@ export class AlunoComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+
   ) {
     this.refresh();
   }
@@ -49,7 +56,14 @@ export class AlunoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+ 
+    
+    this.form = this._formBuilder.group({
+      idAluno: [, [Validators.required]]
+      
+         })
+  }
 
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
@@ -80,5 +94,15 @@ export class AlunoComponent implements OnInit {
       }
     });
   }
+
+  backendWarnError(text: string): void {
+    this._snackBar.open(text, 'X', {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['warning']
+    });
+  }
+
 
 }
