@@ -13,7 +13,6 @@ export class AlunoService {
   private readonly API = 'api/aluno';
 
   constructor(private httpClient: HttpClient) { }
-  
 
   list() {
     return this.httpClient.get<Aluno[]>(this.API)
@@ -51,8 +50,8 @@ export class AlunoService {
     return this.httpClient.delete(`${this.API}/${idAluno}`).pipe(first());
   }
 
-  getRelAluno(idAluno: number): Observable<any> {
-    return this.httpClient.get(`${this.API}/${idAluno}/realAluno/print`, { responseType: 'blob' });
+  getRelAluno(idAluno: string): Observable<any> {
+    return this.httpClient.get(`${this.API}/relAluno/${idAluno}`, { responseType: 'blob' });
   }
 
 }

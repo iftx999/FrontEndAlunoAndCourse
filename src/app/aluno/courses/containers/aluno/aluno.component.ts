@@ -58,9 +58,10 @@ export class AlunoComponent implements OnInit {
 
   ngOnInit(): void {
  
-
+    
     this.form = this._formBuilder.group({
       idAluno: [, [Validators.required]]
+      
          })
   }
 
@@ -102,17 +103,6 @@ export class AlunoComponent implements OnInit {
       panelClass: ['warning']
     });
   }
-  exportarPdf(): void {
-    this.isLoading = true;
-    let formObj = this.form.getRawValue();
-    this.alunoService.getRelAluno(formObj.aluno.idAluno)
-      .subscribe(file => {
-        this.isLoading = false;
-      },
-        (err) => {
-          this.backendWarnError("A consulta não retornou nenhum dado.");
-          this.isLoading = false;
-        });
-  }
+
 
 }
