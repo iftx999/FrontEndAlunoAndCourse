@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as FileSaver from 'file-saver';
 
 import { Aluno } from '../model/aluno';
 import { delay, first, tap } from 'rxjs/operators';
@@ -12,8 +13,15 @@ export class AlunoService {
 
   private readonly API = 'api/aluno';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    
+   }
 
+   saveAs(file: Blob, name: string): void {
+    FileSaver.saveAs(file, name);
+  }
+
+ 
   list() {
     return this.httpClient.get<Aluno[]>(this.API)
       .pipe(
