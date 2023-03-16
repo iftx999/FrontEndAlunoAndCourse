@@ -95,7 +95,7 @@ export class AlunoFormComponent implements OnInit {
     let formObj = this.form.getRawValue();
     this.service.getRelAluno(formObj.idAluno)
           .subscribe(file => {
-            this.service.saveAs(file, 'Relatório Produtos');
+            this.service.saveAs(file, 'Termo de Responsabilidade');
         this.isLoading = false;
             },
         (err) => {
