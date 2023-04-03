@@ -27,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatSidenavModule,
     MatListModule
     
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
