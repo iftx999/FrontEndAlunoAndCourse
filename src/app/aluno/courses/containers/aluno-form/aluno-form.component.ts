@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Aluno } from '../../model/aluno';
 
+
 import { AlunoService } from '../../services/aluno.service';
 @Component({
   selector: 'app-aluno-form',
@@ -95,7 +96,7 @@ export class AlunoFormComponent implements OnInit {
     let formObj = this.form.getRawValue();
     this.service.getRelAluno(formObj.idAluno)
           .subscribe(file => {
-            this.service.saveAs(file, 'Relatório Produtos');
+            this.service.saveAs(file, 'Informação do Aluno');
         this.isLoading = false;
             },
         (err) => {
