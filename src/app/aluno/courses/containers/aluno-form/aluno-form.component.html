@@ -31,6 +31,23 @@
               getErrorMessage("idade")
             }}</mat-error>
           </mat-form-field>
+
+          <mat-form-field  class="text-input">
+            <input matInput placeholder="Responsavel" formControlName="responsavel" #responsavel />
+            <mat-hint align="end">{{ responsavel.value?.length || 0 }} / 100</mat-hint>
+            <mat-error *ngIf="form.get('responsavel')?.invalid">{{
+              getErrorMessage("cpf")
+            }}</mat-error>
+          </mat-form-field>
+            
+    
+              <mat-form-field id="container">
+                <input matInput placeholder="Contato" formControlName="contato" #contato />
+                <mat-hint align="end">{{ contato.value?.length || 0 }} / 100</mat-hint>
+                <mat-error *ngIf="form.get('contato')?.invalid">{{
+                  getErrorMessage("idade")
+                }}</mat-error>
+              </mat-form-field>
       </div>
 
 </mat-dialog-content>
