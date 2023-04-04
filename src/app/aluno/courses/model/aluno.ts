@@ -3,4 +3,8 @@ export interface Aluno {
   nome: string;
   cpf: string;
   idade: string;
+  responsavel: string;
+  contato: string;
+
+
 }

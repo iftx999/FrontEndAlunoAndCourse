@@ -24,7 +24,11 @@ export class AlunoFormComponent implements OnInit {
     nome: ['', [Validators.required,
     Validators.minLength(5),
     Validators.maxLength(100)]],
-    cpf: ['', [Validators.required]]
+    cpf: ['', [Validators.required]],
+    contato: ['', [Validators.required]],
+    responsavel: ['', [Validators.required]]
+
+
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
