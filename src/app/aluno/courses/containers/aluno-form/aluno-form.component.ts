@@ -21,13 +21,13 @@ export class AlunoFormComponent implements OnInit {
   form = this.formBuilder.group({
      idAluno: [''],
     idade: [''],
+    responsavel: [''],
+    contato: [''],
     nome: ['', [Validators.required,
     Validators.minLength(5),
     Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
-    contato: ['', [Validators.required]],
-    responsavel: ['', [Validators.required]]
-
+   
 
   });
 
@@ -44,12 +44,15 @@ export class AlunoFormComponent implements OnInit {
     this.form.setValue({
       idAluno: aluno.idAluno,
       nome: aluno.nome,
+      contato: aluno.contato,
+      responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
+   
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.service.save(this.form.value)
       .subscribe(result => this.onSuccess(), error => this.onError());
   }
