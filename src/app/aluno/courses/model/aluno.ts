@@ -7,7 +7,7 @@ export interface Aluno {
   idade: string;
   responsavel: string;
   contato: string;
-  tipoCourse: Course | undefined;
+  tipoCourse: Course | string;
 
 
 }
