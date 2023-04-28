@@ -21,7 +21,7 @@ export class AlunoListComponent implements OnInit {
   @Output() remove = new EventEmitter(false);
   @Output() export = new EventEmitter(false); 
 
-  readonly displayedColumns = ['nome', 'cpf', 'idade','contato','responsavel', 'actions'];
+  readonly displayedColumns = ['nome', 'cpf', 'idade', 'contato', 'responsavel', 'tipoCourse', 'actions'];
 
   constructor() { 
 

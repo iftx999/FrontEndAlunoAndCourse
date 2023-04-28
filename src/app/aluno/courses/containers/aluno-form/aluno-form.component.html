@@ -13,10 +13,13 @@
           getErrorMessage("nome")
         }}</mat-error>
       </mat-form-field>
+
+
+   
  
    
       <mat-form-field  class="text-input">
-        <input matInput placeholder="Cpf" formControlName="cpf" #cpf />
+        <input matInput placeholder="Cpf" formControlName="cpf" mask="00.000.000/0000-00" #cpf   />
         <mat-hint align="end">{{ cpf.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="form.get('cpf')?.invalid">{{
           getErrorMessage("cpf")
@@ -48,6 +51,8 @@
                   getErrorMessage("idade")
                 }}</mat-error>
               </mat-form-field>
+
+              
       </div>
 
 </mat-dialog-content>

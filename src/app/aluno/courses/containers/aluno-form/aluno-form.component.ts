@@ -1,12 +1,15 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Aluno } from '../../model/aluno';
-
-
 import { AlunoService } from '../../services/aluno.service';
+import { CoursesService } from 'src/app/courses/services/courses.service';
+import { Course } from 'src/app/courses/model/course';
+
+
+
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
@@ -27,19 +30,26 @@ export class AlunoFormComponent implements OnInit {
     Validators.minLength(5),
     Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
+    tipoCourse: [''],
+
    
 
   });
+
+
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: AlunoService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private courseService: CoursesService,
     private route: ActivatedRoute) {
     //this.form
   }
 
   ngOnInit(): void {
+
+    this.list();
     const aluno: Aluno = this.route.snapshot.data['aluno'];
     this.form.setValue({
       idAluno: aluno.idAluno,
@@ -48,6 +58,7 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
+      tipoCourse: aluno.tipoCourse,
    
     });
   }
@@ -112,6 +123,20 @@ export class AlunoFormComponent implements OnInit {
         });
   }
 
+  
 
+  list(): void {
+    this.courseService.list()
+  }
+
+    maskCPF(value: string) {
+    value = value.substring(0, 11);
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    return value;
+  }
  
 }
+  
+
