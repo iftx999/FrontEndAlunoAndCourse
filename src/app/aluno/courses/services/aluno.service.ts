@@ -63,6 +63,6 @@ export class AlunoService {
   }
 
   getTotalAlunos() {
-    return this.httpClient.get<number>(`${this.API}/total`);
+    return this.httpClient.get<number>(`${this.API}/totalAluno`);
   }
 }
