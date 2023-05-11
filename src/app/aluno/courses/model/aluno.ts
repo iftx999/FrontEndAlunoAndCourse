@@ -6,5 +6,4 @@ export interface Aluno {
   responsavel: string;
   contato: string;
 
-
 }

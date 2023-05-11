@@ -14,6 +14,8 @@ import { AlunoService } from '../../services/aluno.service';
 })
 export class AlunoFormComponent implements OnInit {
 
+  totalAluno: number = 0;
+
 
   isLoading: boolean = false;
 
@@ -40,6 +42,12 @@ export class AlunoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.service.getTotalAlunos()
+    .subscribe(quantidade => {
+      this.totalAluno = quantidade;
+    });
+  
     const aluno: Aluno = this.route.snapshot.data['aluno'];
     this.form.setValue({
       idAluno: aluno.idAluno,
@@ -48,9 +56,13 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
+
+      
    
     });
   }
+
+  
 
   onSubmit(): void {
     this.service.save(this.form.value)
@@ -112,6 +124,9 @@ export class AlunoFormComponent implements OnInit {
         });
   }
 
+}
+
+
 
  
-}
+

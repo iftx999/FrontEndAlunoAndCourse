@@ -62,4 +62,7 @@ export class AlunoService {
     return this.httpClient.get(`${this.API}/relAluno/${idAluno}`, { responseType: 'blob' });
   }
 
+  getTotalAlunos() {
+    return this.httpClient.get<number>(`${this.API}/total`);
+  }
 }
