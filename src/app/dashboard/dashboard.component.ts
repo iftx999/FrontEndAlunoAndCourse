@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlunoService } from '../aluno/courses/services/aluno.service';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
+import { CoursesService } from '../courses/services/courses.service';
 
 
 @Component({
@@ -15,6 +16,9 @@ export class DashboardComponent implements OnInit {
   
   
   quantidadeAlunos: number | undefined;
+
+  quantidadeCourse: number | undefined;
+
 
 
   escola = {
@@ -28,18 +32,23 @@ export class DashboardComponent implements OnInit {
     private service: AlunoService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private courseService: CoursesService,
     private route: ActivatedRoute) {
     //this.form
   }
 
   ngOnInit(): void {
-
-
-
-    this.service.getTotalAlunos()
+    
+      this.service.getTotalAlunos()
       .subscribe(quantidade => {
         this.quantidadeAlunos = quantidade;
       });
+
+        this.courseService.getTotaCourse()
+      .subscribe(quantidades => {
+        this.quantidadeCourse = quantidades;
+      });
   }
+  
 }
 
