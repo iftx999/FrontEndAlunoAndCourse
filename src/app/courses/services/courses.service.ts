@@ -53,4 +53,10 @@ export class CoursesService {
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  getTotalCourse() {
+    return this.httpClient.get<number>(`${this.API}/totalCourse`);
+  }
 }
+
+

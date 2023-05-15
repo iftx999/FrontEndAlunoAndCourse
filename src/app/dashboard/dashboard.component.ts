@@ -30,9 +30,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: AlunoService,
+    private courseService: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private courseService: CoursesService,
     private route: ActivatedRoute) {
     //this.form
   }
@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit {
         this.quantidadeAlunos = quantidade;
       });
 
-        this.courseService.getTotaCourse()
-      .subscribe(quantidades => {
-        this.quantidadeCourse = quantidades;
+        this.courseService.getTotalCourse()
+      .subscribe(quantidadeC => {
+        this.quantidadeCourse = quantidadeC;
       });
   }
   
