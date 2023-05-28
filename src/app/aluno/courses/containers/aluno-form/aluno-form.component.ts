@@ -16,7 +16,12 @@ import { CoursesService } from 'src/app/courses/services/courses.service';
 export class AlunoFormComponent implements OnInit {
 
   totalAluno: number = 0;
-  cursos: Course[];
+  cursos: Course[] | undefined;
+
+
+
+
+
 
   isLoading: boolean = false;
 
@@ -30,6 +35,7 @@ export class AlunoFormComponent implements OnInit {
     Validators.minLength(5),
     Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
+    curso: [''],
 
    
 
@@ -43,10 +49,14 @@ export class AlunoFormComponent implements OnInit {
     private location: Location,
     private courseService: CoursesService,
     private route: ActivatedRoute) {
-      
-    this.cursos = this.courseService.getCourseAll(); 
+
+    let cursos = this.cursos;
+      cursos = this.courseService.getCourseAll(); 
+
 
   }
+
+
 
   ngOnInit(): void {
     
@@ -61,7 +71,7 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
-
+      curso: aluno.curso,
 
       
    
@@ -78,6 +88,7 @@ export class AlunoFormComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+  
 
   private onSuccess() {
     this.snackBar.open('Curso salvo com sucesso!', '', { duration: 5000 });
