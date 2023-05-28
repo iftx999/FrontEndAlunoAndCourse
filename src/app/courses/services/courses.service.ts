@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Course } from '../model/course';
 import { delay, first, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,12 @@ export class CoursesService {
   getTotalCourse() {
     return this.httpClient.get<number>(`${this.API}/totalCourse`);
   }
+
+  getCourseAll(): Observable<Course[]>{
+    return this.httpClient.get<Course[]> (`${this.API}}`);
+  }
+
+  
 }
 
 

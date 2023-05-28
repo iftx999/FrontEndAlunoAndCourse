@@ -1,12 +1,13 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { Form, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Aluno } from '../../model/aluno';
-
+import { Course } from 'src/app/courses/model/course';
 
 import { AlunoService } from '../../services/aluno.service';
+import { CoursesService } from 'src/app/courses/services/courses.service';
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
@@ -15,7 +16,7 @@ import { AlunoService } from '../../services/aluno.service';
 export class AlunoFormComponent implements OnInit {
 
   totalAluno: number = 0;
-
+  cursos: Course[];
 
   isLoading: boolean = false;
 
@@ -29,24 +30,28 @@ export class AlunoFormComponent implements OnInit {
     Validators.minLength(5),
     Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
+
    
 
   });
+
+
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: AlunoService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private courseService: CoursesService,
     private route: ActivatedRoute) {
-    //this.form
+      
+    this.cursos = this.courseService.getCourseAll(); 
+
   }
 
   ngOnInit(): void {
+    
 
-    this.service.getTotalAlunos()
-    .subscribe(quantidade => {
-      this.totalAluno = quantidade;
-    });
+   
   
     const aluno: Aluno = this.route.snapshot.data['aluno'];
     this.form.setValue({
@@ -56,6 +61,7 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
+
 
       
    
@@ -123,6 +129,7 @@ export class AlunoFormComponent implements OnInit {
           this.isLoading = false;
         });
   }
+
 
 }
 

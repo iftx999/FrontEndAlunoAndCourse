@@ -5,6 +5,7 @@ import * as FileSaver from 'file-saver';
 import { Aluno } from '../model/aluno';
 import { delay, first, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Course } from 'src/app/courses/model/course';
 
 @Injectable({
   providedIn: 'root'
@@ -65,4 +66,6 @@ export class AlunoService {
   getTotalAlunos() {
     return this.httpClient.get<number>(`${this.API}/totalAluno`);
   }
+
+
 }
