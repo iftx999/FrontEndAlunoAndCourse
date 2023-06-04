@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { AlunoService } from '../services/aluno.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,6 @@ export class AlunoResolver implements Resolve<Aluno> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({ idAluno: '', nome: '', cpf: '',  idade:'', contato:'', responsavel:'' });
+    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', curso: { _id: '', name: '', category: '' } });
   }
 }

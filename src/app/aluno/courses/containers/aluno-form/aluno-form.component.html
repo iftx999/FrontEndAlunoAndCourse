@@ -1,7 +1,7 @@
 <mat-card>
   <mat-toolbar color="primary">Detalhes do Aluno</mat-toolbar>
 
-  <mat-dialog-content [formGroup]="form" class="w-full flex flex-col min-w-full md:min-w-0 m-auto">
+  <mat-dialog-content [formGroup]="alunoForm" class="w-full flex flex-col min-w-full md:min-w-0 m-auto">
 
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -9,25 +9,31 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome do Aluno" formControlName="nome" #nome />
         <mat-hint align="end">{{ nome.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('nome')?.invalid">{{
+        <mat-error *ngIf="alunoForm.get('nome')?.invalid">{{
           getErrorMessage("nome")
         }}</mat-error>
       </mat-form-field>
- 
    
       <mat-form-field  class="text-input">
         <input matInput placeholder="Cpf" formControlName="cpf" #cpf />
         <mat-hint align="end">{{ cpf.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('cpf')?.invalid">{{
+        <mat-error *ngIf="alunoForm.get('cpf')?.invalid">{{
           getErrorMessage("cpf")
         }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Selecione o curso</mat-label>
+        <mat-select formControlName="cursoId">
+          <mat-option *ngFor="let curso of cursos" [value]="curso._id">{{ curso._id }}</mat-option>
+        </mat-select>
       </mat-form-field>
         
 
           <mat-form-field id="container">
             <input matInput placeholder="Idade" formControlName="idade" #idade />
             <mat-hint align="end">{{ idade.value?.length || 0 }} / 100</mat-hint>
-            <mat-error *ngIf="form.get('idade')?.invalid">{{
+            <mat-error *ngIf="alunoForm.get('idade')?.invalid">{{
               getErrorMessage("idade")
             }}</mat-error>
           </mat-form-field>
@@ -35,7 +41,7 @@
           <mat-form-field  class="text-input">
             <input matInput placeholder="Responsavel" formControlName="responsavel" #responsavel />
             <mat-hint align="end">{{ responsavel.value?.length || 0 }} / 100</mat-hint>
-            <mat-error *ngIf="form.get('responsavel')?.invalid">{{
+            <mat-error *ngIf="alunoForm.get('responsavel')?.invalid">{{
               getErrorMessage("cpf")
             }}</mat-error>
           </mat-form-field>
@@ -44,7 +50,7 @@
               <mat-form-field id="container">
                 <input matInput placeholder="Contato" formControlName="contato" #contato />
                 <mat-hint align="end">{{ contato.value?.length || 0 }} / 100</mat-hint>
-                <mat-error *ngIf="form.get('contato')?.invalid">{{
+                <mat-error *ngIf="alunoForm.get('contato')?.invalid">{{
                   getErrorMessage("idade")
                 }}</mat-error>
               </mat-form-field>

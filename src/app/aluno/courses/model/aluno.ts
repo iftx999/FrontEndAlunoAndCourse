@@ -1,3 +1,5 @@
+import { Course } from "src/app/courses/model/course";
+
 export interface Aluno {
   idAluno: string;
   nome: string;
@@ -5,6 +7,6 @@ export interface Aluno {
   idade: string;
   responsavel: string;
   contato: string;
-
+  curso: Course | null;
 
 }
