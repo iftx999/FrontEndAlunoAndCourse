@@ -26,7 +26,7 @@ export class AlunoFormComponent implements OnInit {
     contato: [''],
     nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
-    cursoId: [null, Validators.required] // Adicionado campo para o ID do curso
+    idCourse: [null, [Validators.required]]// Adicionado campo para o ID do curso
   });
 
   constructor(
@@ -47,28 +47,41 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
-      cursoId: null // Definir valor inicial para o campo do ID do curso
+      idCourse: null // Definir valor inicial para o campo do ID do curso
     });
 
     // Obter lista de cursos para exibir no formulário
     this.courseService.list().subscribe(cursos => {
       this.cursos = cursos;
     });
+    console.log(aluno);
+
   }
+  
+
 
   onSubmit(): void {
     if (this.alunoForm.valid) {
+      
       const dadosAluno = {
+        
         ...this.alunoForm.value
       };
 
       this.service.save(dadosAluno).subscribe(
+        
         result => this.onSuccess(),
+        
         error => this.onError()
+        
+        
       );
+
     } else {
       // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
     }
+    console.log(this.alunoForm);
+
   }
 
   onCancel() {

@@ -16,6 +16,6 @@ export class AlunoResolver implements Resolve<Aluno> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', curso: { _id: '', name: '', category: '' } });
+    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', cursoID: { _id: '', name: '', category: '' } });
   }
 }

@@ -24,7 +24,7 @@
 
       <mat-form-field>
         <mat-label>Selecione o curso</mat-label>
-        <mat-select formControlName="cursoId">
+        <mat-select formControlName="idCourse">
           <mat-option *ngFor="let curso of cursos" [value]="curso._id">{{ curso._id }}</mat-option>
         </mat-select>
       </mat-form-field>
