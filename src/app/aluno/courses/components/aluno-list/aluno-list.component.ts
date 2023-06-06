@@ -21,20 +21,25 @@ export class AlunoListComponent implements OnInit {
   @Output() remove = new EventEmitter(false);
   @Output() export = new EventEmitter(false); 
 
-  readonly displayedColumns = ['nome', 'cpf', 'idade','contato','responsavel', 'actions'];
+  readonly displayedColumns = ['nome', 'cpf', 'idCourse', 'actions'];
 
   constructor() { 
 
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+   }
 
   onAdd() {
+
     this.add.emit(true);
   }
 
   onEdit(aluno: Aluno) {
+    console.log(aluno);
+
     this.edit.emit(aluno);
   }
 
@@ -44,6 +49,8 @@ export class AlunoListComponent implements OnInit {
   onExport(aluno: Aluno){
     this.export.emit(aluno);
   }
+
+
 
   
 }
