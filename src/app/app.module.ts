@@ -28,6 +28,8 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSidenavModule,
     MatListModule,
     NgxMaskModule,
+    NgxMaskModule.forRoot()
+
     
     
   ],

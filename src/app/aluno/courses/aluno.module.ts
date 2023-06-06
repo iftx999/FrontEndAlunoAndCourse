@@ -8,6 +8,7 @@ import { AlunoListComponent } from './components/aluno-list/aluno-list.component
 import { AlunoComponent } from './containers/aluno/aluno.component';
 import { AlunoFormComponent } from './containers/aluno-form/aluno-form.component';
 import { AlunoRoutingModule } from './aluno-routing.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AlunoRoutingModule } from './aluno-routing.module';
     AlunoRoutingModule,
     AppMaterialModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule
   ]
 })
 export class AlunoModule { }
