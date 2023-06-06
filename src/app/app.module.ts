@@ -11,10 +11,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatCardModule,
     AppMaterialModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    
+    
+
     
     
   ],
