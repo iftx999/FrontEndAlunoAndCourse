@@ -10,6 +10,7 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatCardModule,
     AppMaterialModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    NgxMaskModule,
+    NgxMaskModule.forRoot()
+
     
     
   ],

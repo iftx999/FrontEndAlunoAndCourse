@@ -11,20 +11,16 @@
     <mat-cell *matCellDef="let aluno">{{ aluno.cpf }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="idade">
-    <mat-header-cell *matHeaderCellDef>idade</mat-header-cell>
-    <mat-cell *matCellDef="let aluno">{{ aluno.idade }}</mat-cell>
+  <ng-container matColumnDef="idCourse">
+    <mat-header-cell *matHeaderCellDef>Course</mat-header-cell>
+    <mat-cell *matCellDef="let aluno">{{ aluno.idCourse.name }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="contato">
-    <mat-header-cell *matHeaderCellDef>contato</mat-header-cell>
-    <mat-cell *matCellDef="let aluno">{{ aluno.contato }}</mat-cell>
-  </ng-container>
 
-  <ng-container matColumnDef="responsavel">
-    <mat-header-cell *matHeaderCellDef>responsavela</mat-header-cell>
-    <mat-cell *matCellDef="let aluno">{{ aluno.responsavel }}</mat-cell>
-  </ng-container>
+
+  
+
+  
 
   <!-- Actions Column -->
   <ng-container matColumnDef="actions">

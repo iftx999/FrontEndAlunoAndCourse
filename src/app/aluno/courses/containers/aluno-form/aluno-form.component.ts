@@ -26,7 +26,7 @@ export class AlunoFormComponent implements OnInit {
     contato: [''],
     nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     cpf: ['', [Validators.required]],
-    cursoId: [null, Validators.required] // Adicionado campo para o ID do curso
+    idCourse: [null, [Validators.required]]// Adicionado campo para o ID do curso
   });
 
   constructor(
@@ -47,28 +47,41 @@ export class AlunoFormComponent implements OnInit {
       responsavel: aluno.responsavel,
       cpf: aluno.cpf,
       idade: aluno.idade,
-      cursoId: null // Definir valor inicial para o campo do ID do curso
+      idCourse: null // Definir valor inicial para o campo do ID do curso
     });
 
     // Obter lista de cursos para exibir no formulário
     this.courseService.list().subscribe(cursos => {
       this.cursos = cursos;
     });
+    console.log(aluno);
+
   }
+  
+
 
   onSubmit(): void {
     if (this.alunoForm.valid) {
+      
       const dadosAluno = {
+        
         ...this.alunoForm.value
       };
 
       this.service.save(dadosAluno).subscribe(
+        
         result => this.onSuccess(),
+        
         error => this.onError()
+        
+        
       );
+
     } else {
       // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
     }
+    console.log(this.alunoForm);
+
   }
 
   onCancel() {
@@ -76,25 +89,57 @@ export class AlunoFormComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.snackBar.open('Aluno cadastrado com sucesso!', '', { duration: 5000 });
+    this.snackBar.open('Curso salvo com sucesso!', '', { duration: 5000 });
     this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open('Erro ao cadastrar aluno.', '', { duration: 5000 });
+    this.snackBar.open('Erro ao salvar curso.', '', { duration: 5000 });
   }
 
   getErrorMessage(fieldName: string) {
-    // Código para obter mensagens de erro do campo omitido por simplicidade
+    const field = this.alunoForm.get(fieldName);
+
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório';
+    }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
+      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    }
 
     return 'Campo Inválido';
   }
 
+
   backendWarnError(text: string): void {
-    // Código para exibir mensagem de aviso do backend omitido por simplicidade
+    this.snackBar.open(text, 'X', {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['warning']
+    });
   }
 
+
+
   onExport(): void {
-    // Código para exportar informações do aluno omitido por simplicidade
-  }
+    this.isLoading = true;
+    let formObj = this.alunoForm.getRawValue();
+    this.service.getRelAluno(formObj.idAluno)
+          .subscribe(file => {
+            this.service.saveAs(file, 'Informação do Aluno');
+        this.isLoading = false;
+            },
+        (err) => {
+          this.backendWarnError("A consulta não retornou nenhum dado.");
+          this.isLoading = false;
+        });
+}
 }

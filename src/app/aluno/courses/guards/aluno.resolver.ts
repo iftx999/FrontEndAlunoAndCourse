@@ -1,6 +1,6 @@
 import { Aluno } from '../model/aluno';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AlunoService } from '../services/aluno.service';
 
@@ -8,7 +8,7 @@ import { AlunoService } from '../services/aluno.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AlunoResolver implements Resolve<Aluno> {
+export class AlunoResolver  {
 
   constructor(private service: AlunoService) { }
 
@@ -16,6 +16,6 @@ export class AlunoResolver implements Resolve<Aluno> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', curso: { _id: '', name: '', category: '' } });
+    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', cursoID: { _id: '', name: '', category: '' } });
   }
 }
