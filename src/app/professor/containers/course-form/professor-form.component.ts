@@ -21,6 +21,8 @@ export class ProfessorFormComponent implements OnInit {
     endereco:  ['', [Validators.required]],
     telefone:  ['', [Validators.required]],
     email:  ['', [Validators.required]],
+    salario:  ['', [Validators.required]],
+
 
   });
 
@@ -41,6 +43,7 @@ export class ProfessorFormComponent implements OnInit {
       endereco: professor.endereco,
       telefone: professor.telefone,
       email: professor.email,
+      salario:professor.salario,
     });
   }
 

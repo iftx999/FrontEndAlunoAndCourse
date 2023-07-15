@@ -6,5 +6,6 @@ nascimento: string;
 endereco: string;
 telefone: string;
 email: string;
+salario: string;
 
 }

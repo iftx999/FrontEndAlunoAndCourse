@@ -22,6 +22,7 @@ export class ProfessorResolver  {
       endereco: '',
       telefone: '',
       email: '',
+      salario: ''
        });
   }
 }
