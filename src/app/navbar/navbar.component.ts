@@ -7,9 +7,14 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  showCadastro: boolean = false;
+
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
 
   toggleSidenav() {
     this.sidenav.toggle();
+  }
+  toggleCadastro() {
+    this.showCadastro = !this.showCadastro;
   }
 }
