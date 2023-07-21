@@ -45,7 +45,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Salario" formControlName="salario" #salario />
+        <input mask="separator.2" thousandSeparator="." matInput  placeholder="Salario"  formControlName="salario" #salario />
         <mat-hint align="end">{{ salario.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="form.get('email')?.invalid">{{
           getErrorMessage("name")

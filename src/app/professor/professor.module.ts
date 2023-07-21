@@ -8,6 +8,7 @@ import { ProfessorListComponent } from './components/courses-list/professor-list
 import { ProfessorFormComponent } from './containers/course-form/professor-form.component';
 import { ProfessorComponent } from './containers/courses/professor.component';
 import { ProfessorRoutingModule } from './professor-routing.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ProfessorRoutingModule } from './professor-routing.module';
     ProfessorRoutingModule,
     AppMaterialModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule
   ]
 })
 export class ProfessorModule { }

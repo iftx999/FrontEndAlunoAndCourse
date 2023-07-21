@@ -7,6 +7,6 @@ export interface Aluno {
   idade: string;
   responsavel: string;
   contato: string;
-  cursoID: Course | any;
+  idCourse: Course | any;
 
 }
