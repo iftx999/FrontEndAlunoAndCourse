@@ -11,6 +11,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatToolbarModule,
     HttpClientModule,
     MatCardModule,
+    FullCalendarModule,
     AppMaterialModule,
     MatSidenavModule,
     MatListModule,

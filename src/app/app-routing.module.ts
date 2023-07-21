@@ -14,7 +14,11 @@ const routes: Routes = [
  },
  {
   path: 'professores',
-  loadChildren: () => import('./professor/professor.module').then(z => z.ProfessorModule),
+  loadChildren: () => import('./professor/professor.module').then(g => g.ProfessorModule),
+},
+{
+  path: 'calendar',
+  loadChildren: () => import('./calendar/calendar.module').then(y => y.AgendaModule),
 },
   {
     path: 'dashboard',
