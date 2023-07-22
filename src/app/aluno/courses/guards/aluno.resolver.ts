@@ -16,6 +16,6 @@ export class AlunoResolver  {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', cursoID: { _id: '', name: '', category: '' } });
+    return of({ idAluno: '', nome: '', cpf: '', idade: '', contato: '', responsavel: '', idCourse: { _id: '', name: '', category: '' } });
   }
 }
