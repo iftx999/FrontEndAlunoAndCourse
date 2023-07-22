@@ -1,5 +1,5 @@
+
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppCalendar } from './app.calendar';
 import { CommonModule } from '@angular/common';
@@ -19,13 +19,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppCalendar
-  
+
 
   ],
   imports: [
     CommonModule,
     FullCalendarModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
 
   ],
   providers: [],

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppCalendar } from './app.calendar';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
-
 @NgModule({
   declarations: [
     AppCalendar
@@ -11,10 +10,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   imports: [
     BrowserModule,
     FullCalendarModule
-
-    
   ],
   providers: [],
   bootstrap: [AppCalendar]
 })
-export class AppClandarModule { }
+export class AppCalendarModule { }

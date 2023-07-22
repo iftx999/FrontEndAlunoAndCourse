@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^16.0.4",
     "@angular/platform-browser-dynamic": "^16.0.4",
     "@angular/router": "^16.0.4",
+    "@fullcalendar/angular": "^6.1.8",
     "@fullcalendar/core": "^6.1.8",
     "angular": "^1.8.3",
     "chart.js": "^4.2.1",
