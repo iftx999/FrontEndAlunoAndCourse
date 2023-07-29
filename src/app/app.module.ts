@@ -12,12 +12,14 @@ import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SetorComponent } from './setor/setor.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    SetorComponent,
   ],
   imports: [
     BrowserModule,
