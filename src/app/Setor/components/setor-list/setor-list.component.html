@@ -1,19 +1,8 @@
-<mat-table [dataSource]="courses">
+<mat-table [dataSource]="setor">
   <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Curso</mat-header-cell>
-    <mat-cell *matCellDef="let course">{{ course.name }}</mat-cell>
-  </ng-container>
-
-  <!-- Category Column -->
-  <ng-container matColumnDef="category">
-    <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
-    <mat-cell *matCellDef="let course">
-      {{ course.category }}
-      <mat-icon aria-hidden="false" aria-label="Categoria do Curso">{{
-        course.category | category
-      }}</mat-icon>
-    </mat-cell>
+  <ng-container matColumnDef="nameSetor">
+    <mat-header-cell *matHeaderCellDef>Setor</mat-header-cell>
+    <mat-cell *matCellDef="let setor">{{ setor.setorName }}</mat-cell>
   </ng-container>
 
   <!-- Actions Column -->
@@ -22,7 +11,7 @@
       <button
         mat-mini-fab
         color="accent"
-        aria-label="Adicionar um curso"
+        aria-label="Adicionar um setor"
         (click)="onAdd()"
         class="action-column-header"
       >
@@ -31,12 +20,12 @@
       
     </mat-header-cell>
 
-    <mat-cell *matCellDef="let course" class="action-column">
+    <mat-cell *matCellDef="let setor" class="action-column">
       <button
         mat-icon-button
         color="primary"
-        aria-label="Editar Curso"
-        (click)="onEdit(course)"
+        aria-label="Editar Setor"
+        (click)="onEdit(setor)"
       >
         <mat-icon>edit</mat-icon>
       </button>
@@ -44,8 +33,8 @@
       <button
         mat-icon-button
         color="warn"
-        aria-label="Remover Curso"
-        (click)="onDelete(course)"
+        aria-label="Remover Setor"
+        (click)="onDelete(setor)"
       >
         <mat-icon>delete</mat-icon>
       </button>

@@ -5,12 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessorService } from '../../services/professor.service';
 import { Professor } from '../../model/professor';
+import { Setor } from 'src/app/Setor/model/setor';
+import { SetorService } from 'src/app/Setor/services/setor.service';
 @Component({
   selector: 'app-professor-form',
   templateUrl: './professor-form.component.html',
   styleUrls: ['./professor-form.component.scss']
 })
 export class ProfessorFormComponent implements OnInit {
+
+  setor: Setor[]|undefined;
 
   form = this.formBuilder.group({
     idProfessor: [''],
@@ -22,6 +26,7 @@ export class ProfessorFormComponent implements OnInit {
     telefone:  ['', [Validators.required]],
     email:  ['', [Validators.required]],
     salario:  ['', [Validators.required]],
+    idSetor:[null, [Validators.required]]
 
 
   });
@@ -30,6 +35,7 @@ export class ProfessorFormComponent implements OnInit {
     private service: ProfessorService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private setorService : SetorService,
     private route: ActivatedRoute) {
     //this.form
   }
@@ -44,8 +50,18 @@ export class ProfessorFormComponent implements OnInit {
       telefone: professor.telefone,
       email: professor.email,
       salario:professor.salario,
+      idSetor:null,
     });
-  }
+
+       // Obter lista de cursos para exibir no formulário
+       this.setorService.list().subscribe(setor => {
+        this.setor = setor;
+      });
+      console.log(this.setor);
+  
+    }
+    
+  
 
   onSubmit() {
     this.service.save(this.form.value)

@@ -11,9 +11,9 @@ import { Setor } from '../../model/setor';
 import { SetorService } from '../../services/setor.service';
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  selector: 'app-setor',
+  templateUrl: './setor.component.html',
+  styleUrls: ['./setor.component.scss']
 })
 export class SetorComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class SetorComponent implements OnInit {
     this.setor$ = this.setorService.list()
       .pipe(
         catchError(error => {
-          this.onError('Erro ao carregar cursos.');
+          this.onError('Erro ao carregar setores.');
           return of([])
         })
       );
@@ -52,26 +52,26 @@ export class SetorComponent implements OnInit {
   }
 
   onEdit(setor: Setor) {
-    this.router.navigate(['edit', setor._id], { relativeTo: this.route });
+    this.router.navigate(['edit', setor.idSetor], { relativeTo: this.route });
   }
 
   onRemove(setor: Setor) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse curso?',
+      data: 'Tem certeza que deseja remover esse setor?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.setorService.remove(setor._id).subscribe(
+        this.setorService.remove(setor.idSetor).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Curso removido com sucesso!', 'X', {
+            this.snackBar.open('Setor removido com sucesso!', 'X', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover curso.')
+          () => this.onError('Erro ao tentar remover setor.')
         );
       }
     });

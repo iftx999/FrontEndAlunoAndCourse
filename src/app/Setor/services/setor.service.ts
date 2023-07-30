@@ -9,7 +9,7 @@ import { Setor } from '../model/setor';
 })
 export class SetorService {
 
-  private readonly API = 'api/courses';
+  private readonly API = 'api/setor';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,7 +30,7 @@ export class SetorService {
      console.log(record);
            console.log('cai aqui antes do if');
 
-    if (record._id) {
+    if (record.idSetor) {
       console.log('cai aqui');
       // console.log('update');
       return this.update(record);
@@ -47,7 +47,7 @@ export class SetorService {
   }
 
   private update(record: Partial<Setor>) {
-    return this.httpClient.put<Setor>(`${this.API}/${record._id}`, record).pipe(first());
+    return this.httpClient.put<Setor>(`${this.API}/${record.idSetor}`, record).pipe(first());
   }
 
   remove(id: string) {

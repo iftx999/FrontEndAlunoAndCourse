@@ -6,18 +6,17 @@ import { ActivatedRoute } from '@angular/router';
 import { Setor } from '../../model/setor';
 import { SetorService } from '../../services/setor.service';
 @Component({
-  selector: 'app-course-form',
-  templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.scss']
+  selector: 'app-setor-form',
+  templateUrl: './setor-form.component.html',
+  styleUrls: ['./setor-form.component.scss']
 })
 export class SetorFormComponent implements OnInit {
 
   form = this.formBuilder.group({
-    _id: [''],
-    name: ['', [Validators.required,
+    idSetor: [''],
+    setorName: ['', [Validators.required,
     Validators.minLength(5),
     Validators.maxLength(100)]],
-    category: ['', [Validators.required]]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -29,11 +28,10 @@ export class SetorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const setor: Setor = this.route.snapshot.data['setor'];
+    const setor: Setor = this.route.snapshot.data['setores'];
     this.form.setValue({
-      _id: setor._id,
-      name: setor.name,
-      category: setor.category
+      idSetor: setor.idSetor,
+      setorName: setor.setorName,
     });
   }
 
@@ -47,12 +45,12 @@ export class SetorFormComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.snackBar.open('Curso salvo com sucesso!', '', { duration: 5000 });
+    this.snackBar.open('Setor salvo com sucesso!', '', { duration: 5000 });
     this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open('Erro ao salvar curso.', '', { duration: 5000 });
+    this.snackBar.open('Erro ao salvar setor.', '', { duration: 5000 });
   }
 
   getErrorMessage(fieldName: string) {

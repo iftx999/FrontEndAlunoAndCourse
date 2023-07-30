@@ -5,8 +5,8 @@ import { SetorComponent } from './containers/courses/setor.component';
 import { SetorFormComponent } from './containers/setor-form/setor-form.component';
 const routes: Routes = [
   { path: '', component: SetorComponent },
-  { path: 'new', component: SetorFormComponent, resolve: { course: SetorResolver } },
-  { path: 'edit/:id', component: SetorFormComponent, resolve: { course: SetorResolver } }
+  { path: 'new', component: SetorFormComponent, resolve: { setor: SetorResolver } },
+  { path: 'edit/:id', component: SetorFormComponent, resolve: { setor: SetorResolver } }
 ];
 
 @NgModule({

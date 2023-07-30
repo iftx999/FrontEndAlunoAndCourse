@@ -17,9 +17,15 @@ const routes: Routes = [
   loadChildren: () => import('./professor/professor.module').then(g => g.ProfessorModule),
 },
 {
+  path: 'setor',
+  loadChildren: () => import('./Setor/setor.module').then(g => g.SetorModule),
+},
+
+{
   path: 'calendar',
   loadChildren: () => import('./calendar/calendar.module').then(y => y.AgendaModule),
 },
+
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),

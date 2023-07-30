@@ -52,6 +52,13 @@
         }}</mat-error>
       </mat-form-field>
 
+      <mat-form-field>
+        <mat-label>Selecione o curso</mat-label>
+        <mat-select formControlName="idSetor" #setor>
+          <mat-option *ngFor="let setor of setores" [value]="setor.idSetor">{{ setor.setorName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
      
     </form>
   </mat-card-content>
