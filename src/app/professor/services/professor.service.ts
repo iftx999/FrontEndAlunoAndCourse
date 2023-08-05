@@ -56,9 +56,7 @@ export class ProfessorService {
   }
 
 
-  getCourseAll(): Observable<Professor[]>{
-    return this.httpClient.get<Professor[]> (`${this.API}}`);
-  }
+
 
   
 }

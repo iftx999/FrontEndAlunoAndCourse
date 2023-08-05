@@ -1,12 +1,15 @@
 <mat-card>
   <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
 
+  <mat-dialog-content [formGroup]="professorForm" class="w-full flex flex-col min-w-full md:min-w-0 m-auto">
+
+
   <mat-card-content>
-    <form [formGroup]="form" class="min-width">
+    <form [formGroup]="professorForm" class="min-width">
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="nameProf" #nameProf />
         <mat-hint align="end">{{ nameProf.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('name')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('name')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
@@ -14,7 +17,7 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="nascimento" #nascimento />
         <mat-hint align="end">{{ nascimento.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('nascimento')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('nascimento')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
@@ -23,7 +26,7 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="endereco" #endereco />
         <mat-hint align="end">{{ endereco.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('endereco')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('endereco')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
@@ -31,7 +34,7 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Telefone" formControlName="telefone" #telefone />
         <mat-hint align="end">{{ telefone.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('telefone')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('telefone')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
@@ -39,7 +42,7 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Email" formControlName="email" #email />
         <mat-hint align="end">{{ email.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('email')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('email')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
@@ -47,22 +50,20 @@
       <mat-form-field class="full-width">
         <input mask="separator.2" thousandSeparator="." matInput  placeholder="Salario"  formControlName="salario" #salario />
         <mat-hint align="end">{{ salario.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('email')?.invalid">{{
+        <mat-error *ngIf="professorForm.get('email')?.invalid">{{
           getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
-
       <mat-form-field>
         <mat-label>Selecione o curso</mat-label>
         <mat-select formControlName="idSetor" #setor>
           <mat-option *ngFor="let setor of setores" [value]="setor.idSetor">{{ setor.setorName }}</mat-option>
         </mat-select>
       </mat-form-field>
-
      
     </form>
   </mat-card-content>
-
+</mat-dialog-content>
   <mat-card-actions class="actions-center">
     <button mat-raised-button color="primary" (click)="onSubmit()">
       Salvar

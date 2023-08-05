@@ -2,13 +2,13 @@ import { Setor } from "src/app/Setor/model/setor";
 
 export interface Professor {
 
-idProfessor: string;
-nameProf: string;
-nascimento: string;
-endereco: string;
-telefone: string;
-email: string;
-salario: string;
+idProfessor: string | null;
+nameProf: string | null;
+nascimento: string | null;
+endereco: string | null;
+telefone: string | null;
+email: string | null;
+salario: string | null;
 
 idSetor: Setor | any;
 

@@ -1,71 +1,87 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ProfessorService } from '../../services/professor.service';
 import { Professor } from '../../model/professor';
 import { Setor } from 'src/app/Setor/model/setor';
 import { SetorService } from 'src/app/Setor/services/setor.service';
+import { ProfessorService } from '../../services/professor.service';
+
 @Component({
   selector: 'app-professor-form',
   templateUrl: './professor-form.component.html',
   styleUrls: ['./professor-form.component.scss']
 })
 export class ProfessorFormComponent implements OnInit {
+  setores: Setor[] | undefined;
 
-  setor: Setor[]|undefined;
 
-  form = this.formBuilder.group({
+  professorForm = this.formBuilder.group({
     idProfessor: [''],
-    nameProf: ['', [Validators.required,
-    Validators.minLength(5),
-    Validators.maxLength(100)]],
+    nameProf: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     nascimento: ['', [Validators.required]],
-    endereco:  ['', [Validators.required]],
-    telefone:  ['', [Validators.required]],
-    email:  ['', [Validators.required]],
-    salario:  ['', [Validators.required]],
-    idSetor:[null, [Validators.required]]
-
-
+    endereco: ['', [Validators.required]],
+    telefone: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    salario: ['', [Validators.required]],
+    idSetor: [null, [Validators.required]]
   });
 
-  constructor(private formBuilder: NonNullableFormBuilder,
+  constructor(
+     private formBuilder: FormBuilder,
     private service: ProfessorService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private setorService : SetorService,
-    private route: ActivatedRoute) {
-    //this.form
-  }
+    private setorService: SetorService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const professor: Professor = this.route.snapshot.data['professor'];
-    this.form.setValue({
+    this.professorForm.setValue({
       idProfessor: professor.idProfessor,
-      nameProf: professor.nameProf ,
+      nameProf: professor.nameProf,
       nascimento: professor.nascimento,
       endereco: professor.endereco,
       telefone: professor.telefone,
       email: professor.email,
-      salario:professor.salario,
-      idSetor:null,
+      salario: professor.salario,
+      idSetor: null // Definir valor inicial para o campo do ID do curso
     });
 
-       // Obter lista de cursos para exibir no formulário
-       this.setorService.list().subscribe(setor => {
-        this.setor = setor;
-      });
-      console.log(this.setor);
-  
-    }
-    
+    // Obter lista de cursos para exibir no formulário
+    this.setorService.list().subscribe(setores => {
+      this.setores = setores;
+    });
+    console.log(professor);
+
+  }
   
 
-  onSubmit() {
-    this.service.save(this.form.value)
-      .subscribe(result => this.onSuccess(), error => this.onError());
+
+  onSubmit(): void {
+    if (this.professorForm.valid) {
+      
+      const dadosProfessor = {
+        
+        ...this.professorForm.value
+      };
+
+      this.service.save(dadosProfessor).subscribe(
+        
+        result => this.onSuccess(),
+        
+        error => this.onError()
+        
+        
+      );
+
+    } else {
+      // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
+    }
+    console.log(this.professorForm);
+
   }
 
   onCancel() {
@@ -73,16 +89,16 @@ export class ProfessorFormComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.snackBar.open('Funcionario salvo com sucesso!', '', { duration: 5000 });
+    this.snackBar.open('Curso salvo com sucesso!', '', { duration: 5000 });
     this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open('Erro ao salvar funcionario.', '', { duration: 5000 });
+    this.snackBar.open('Erro ao salvar aluno.', '', { duration: 5000 });
   }
 
   getErrorMessage(fieldName: string) {
-    const field = this.form.get(fieldName);
+    const field = this.professorForm.get(fieldName);
 
     if (field?.hasError('required')) {
       return 'Campo obrigatório';
@@ -100,4 +116,18 @@ export class ProfessorFormComponent implements OnInit {
 
     return 'Campo Inválido';
   }
+
+
+  backendWarnError(text: string): void {
+    this.snackBar.open(text, 'X', {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['warning']
+    });
+  }
+
+
+
+
 }

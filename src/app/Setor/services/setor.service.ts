@@ -58,10 +58,6 @@ export class SetorService {
     return this.httpClient.get<number>(`${this.API}/totalCourse`);
   }
 
-  getCourseAll(): Observable<Setor[]>{
-    return this.httpClient.get<Setor[]> (`${this.API}}`);
-  }
-
   
 }
 
