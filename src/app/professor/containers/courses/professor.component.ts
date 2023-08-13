@@ -58,10 +58,11 @@ export class ProfessorComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: 'Tem certeza que deseja remover esse Funcionário?',
     });
-
+  
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.coursesService.remove(professor.idProfessor).subscribe(
+        const idProfessor = professor.idProfessor!; // Usando o operador ! para afirmar que não é nulo
+        this.coursesService.remove(idProfessor).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Funcionário removido com sucesso!', 'X', {
@@ -75,5 +76,4 @@ export class ProfessorComponent implements OnInit {
       }
     });
   }
-
 }
