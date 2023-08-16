@@ -1,4 +1,4 @@
-import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,19 +7,20 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
-import { Professor } from '../../model/professor';
-import { ProfessorService } from '../../services/professor.service';
-@Component({
-  selector: 'app-professor',
-  templateUrl: './professor.component.html',
-  styleUrls: ['./professor.component.scss']
-})
-export class ProfessorComponent implements OnInit {
+import { Setor } from '../../model/setor';
+import { SetorService } from '../../services/setor.service';
 
-  professor$: Observable<Professor[]> | null = null;
+@Component({
+  selector: 'app-setor',
+  templateUrl: './setor.component.html',
+  styleUrls: ['./setor.component.scss']
+})
+export class SetorComponent implements OnInit {
+
+  setor$: Observable<Setor[]> | null = null;
 
   constructor(
-    private coursesService: ProfessorService,
+    private setorService: SetorService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
@@ -29,10 +30,10 @@ export class ProfessorComponent implements OnInit {
   }
 
   refresh() {
-    this.professor$ = this.coursesService.list()
+    this.setor$ = this.setorService.list()
       .pipe(
         catchError(error => {
-          this.onError('Erro ao carregar cursos.');
+          this.onError('Erro ao carregar setores.');
           return of([])
         })
       );
@@ -50,30 +51,30 @@ export class ProfessorComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  onEdit(professor: Professor) {
-    this.router.navigate(['edit', professor.idProfessor], { relativeTo: this.route });
+  onEdit(setor: Setor) {
+    this.router.navigate(['edit', setor.idSetor], { relativeTo: this.route });
   }
 
-  onRemove(professor: Professor) {
+  onRemove(setor: Setor) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse Funcionário?',
+      data: 'Tem certeza que deseja remover esse setor?',
     });
-  
+
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        const idProfessor = professor.idProfessor!; // Usando o operador ! para afirmar que não é nulo
-        this.coursesService.remove(idProfessor).subscribe(
+        this.setorService.remove(setor.idSetor).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Funcionário removido com sucesso!', 'X', {
+            this.snackBar.open('Setor removido com sucesso!', 'X', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover curso.')
+          () => this.onError('Erro ao tentar remover setor.')
         );
       }
     });
   }
+
 }

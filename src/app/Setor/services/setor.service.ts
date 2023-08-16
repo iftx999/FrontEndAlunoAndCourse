@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Professor } from '../model/professor'; 
 import { delay, first, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Setor } from '../model/setor';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfessorService {
+export class SetorService {
 
-  private readonly API = 'api/professores';
+  private readonly API = 'api/setor';
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Professor[]>(this.API)
+    return this.httpClient.get<Setor[]>(this.API)
       .pipe(
         first(),
         //delay(5000),
@@ -24,14 +23,14 @@ export class ProfessorService {
   }
 
   loadById(id: string) {
-    return this.httpClient.get<Professor>(`${this.API}/${id}`);
+    return this.httpClient.get<Setor>(`${this.API}/${id}`);
   }
 
-  save(record: Partial<Professor>) {
+  save(record: Partial<Setor>) {
      console.log(record);
            console.log('cai aqui antes do if');
 
-    if (record.idProfessor) {
+    if (record.idSetor) {
       console.log('cai aqui');
       // console.log('update');
       return this.update(record);
@@ -43,20 +42,21 @@ export class ProfessorService {
     return this.create(record);
   }
 
-  private create(record: Partial<Professor>) {
-    return this.httpClient.post<Professor>(this.API, record).pipe(first());
+  private create(record: Partial<Setor>) {
+    return this.httpClient.post<Setor>(this.API, record).pipe(first());
   }
 
-  private update(record: Partial<Professor>) {
-    return this.httpClient.put<Professor>(`${this.API}/${record.idProfessor}`, record).pipe(first());
+  private update(record: Partial<Setor>) {
+    return this.httpClient.put<Setor>(`${this.API}/${record.idSetor}`, record).pipe(first());
   }
 
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 
-
-
+  getTotalCourse() {
+    return this.httpClient.get<number>(`${this.API}/totalCourse`);
+  }
 
   
 }

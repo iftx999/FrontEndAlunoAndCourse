@@ -94,7 +94,7 @@ export class AlunoFormComponent implements OnInit {
   }
 
   private onError() {
-    this.snackBar.open('Erro ao salvar curso.', '', { duration: 5000 });
+    this.snackBar.open('Erro ao salvar aluno.', '', { duration: 5000 });
   }
 
   getErrorMessage(fieldName: string) {
