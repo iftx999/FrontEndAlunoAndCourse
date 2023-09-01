@@ -1,5 +1,6 @@
 <mat-card>
-  <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
+  <mat-toolbar color="primary">Colaboradores</mat-toolbar>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
 
   <mat-card-content>
     <form [formGroup]="professorForm" class="min-width">
@@ -11,8 +12,8 @@
         }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Data Nascimento" formControlName="nascimento" #nascimento />
+      <mat-form-field class="text-input">
+        <input type="text" mask="d0/M0/0000" matInput placeholder="Data Nascimento" formControlName="nascimento" #nascimento />
         <mat-hint align="end">{{ nascimento.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="professorForm.get('nascimento')?.invalid">{{
           getErrorMessage("name")
@@ -20,7 +21,7 @@
       </mat-form-field>
 
 
-      <mat-form-field class="full-width">
+      <mat-form-field id="container">
         <input matInput placeholder="Endereco" formControlName="endereco" #endereco />
         <mat-hint align="end">{{ endereco.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="professorForm.get('endereco')?.invalid">{{
@@ -28,8 +29,8 @@
         }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Telefone" formControlName="telefone" #telefone />
+      <mat-form-field id="container">
+        <input mask="(00) 0 0000-0000" matInput placeholder="Telefone" formControlName="telefone" #telefone />
         <mat-hint align="end">{{ telefone.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="professorForm.get('telefone')?.invalid">{{
           getErrorMessage("Telefone")
@@ -62,7 +63,7 @@
      
     </form>
   </mat-card-content>
-
+  </div>
   <mat-card-actions class="actions-center">
     <button mat-raised-button color="primary" (click)="onSubmit()">
       Salvar
