@@ -21,7 +21,7 @@ export class AlunoFormComponent implements OnInit {
 
   alunoForm = this.formBuilder.group({
     idAluno: [''],
-    idade: [''],
+    idade: [0],
     responsavel: [''],
     contato: [''],
     nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -41,7 +41,7 @@ export class AlunoFormComponent implements OnInit {
   ngOnInit(): void {
     const aluno: Aluno = this.route.snapshot.data['aluno'];
     this.alunoForm.setValue({
-      idAluno: aluno.idAluno,
+      idAluno: aluno.idAluno !== null ? aluno.idAluno : '' as number, // Use a asserção de tipo aqui
       nome: aluno.nome,
       contato: aluno.contato,
       responsavel: aluno.responsavel,

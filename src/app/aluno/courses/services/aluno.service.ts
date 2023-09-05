@@ -32,7 +32,7 @@ export class AlunoService {
       );
   }
 
-  loadById(id: string) {
+  loadById(id: number) {
     return this.httpClient.get<Aluno>(`${this.API}/${id}`);
   }
 
