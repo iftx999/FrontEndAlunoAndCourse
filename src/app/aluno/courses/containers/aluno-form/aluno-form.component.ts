@@ -20,12 +20,12 @@ export class AlunoFormComponent implements OnInit {
   isLoading: boolean = false;
 
   alunoForm = this.formBuilder.group({
-    idAluno: [0],
-    idade: [0],
+    idAluno: [],
+    idade: [],
     responsavel: [''],
     contato: [''],
     nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    cpf: [0, [Validators.required]],
+    cpf: [[Validators.required]],
     idCourse: [null, [Validators.required]]// Adicionado campo para o ID do curso
   });
 
