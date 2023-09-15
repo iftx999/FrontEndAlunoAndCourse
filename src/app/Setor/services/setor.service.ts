@@ -50,14 +50,9 @@ export class SetorService {
     return this.httpClient.put<Setor>(`${this.API}/${record.idSetor}`, record).pipe(first());
   }
 
-  remove(id: string) {
-    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  remove(idSetor: string) {
+    return this.httpClient.delete(`${this.API}/${idSetor}`).pipe(first());
   }
-
-  getTotalCourse() {
-    return this.httpClient.get<number>(`${this.API}/totalCourse`);
-  }
-
   
 }
 

@@ -55,11 +55,11 @@ export class AlunoService {
     return this.httpClient.put<Aluno>(`${this.API}/${record.idAluno}`, record).pipe(first());
   }
 
-  remove(idAluno: string) {
+  remove(idAluno: number) {
     return this.httpClient.delete(`${this.API}/${idAluno}`).pipe(first());
   }
 
-  getRelAluno(idAluno: string): Observable<any> {
+  getRelAluno(idAluno: number): Observable<any> {
     return this.httpClient.get(`${this.API}/relAluno/${idAluno}`, { responseType: 'blob' });
   }
 

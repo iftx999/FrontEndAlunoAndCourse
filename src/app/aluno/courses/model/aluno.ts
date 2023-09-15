@@ -1,10 +1,10 @@
 import { Course } from "src/app/courses/model/course";
 
 export interface Aluno {
-  idAluno: string;
+  idAluno: number;
   nome: string;
-  cpf: string;
-  idade: string;
+  cpf: number;
+  idade: number;
   responsavel: string;
   contato: string;
   idCourse: Course | any;

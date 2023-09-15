@@ -13,8 +13,8 @@ export class SetorResolver  {
   constructor(private service: SetorService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Setor> {
-    if (route.params && route.params['id']) {
-      return this.service.loadById(route.params['id']);
+    if (route.params && route.params['idSetor']) {
+      return this.service.loadById(route.params['idSetor']);
     }
     return of({ idSetor: '', setorName: ''});
   }
