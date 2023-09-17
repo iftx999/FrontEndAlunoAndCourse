@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfessorComponent } from './containers/courses/professor.component';
+import { ProfessorComponent } from './containers/professor/professor.component';
 import { ProfessorFormComponent } from './containers/course-form/professor-form.component';
 import { ProfessorResolver } from './guards/professor.resolver';
 

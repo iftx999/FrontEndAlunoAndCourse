@@ -12,18 +12,21 @@ export class ProfessorResolver  {
   constructor(private service: ProfessorService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Professor> {
-    if (route.params && route.params['id']) {
-      return this.service.loadById(route.params['id']);
-    }
-    return of({
-      idProfessor: '',
+    const idParam = route.params['id'];
+  
+    if (idParam) {
+      return this.service.loadById(idParam);
+    } else {
+    return of<Professor>({
+      idProfessor: 0,
       nameProf: '',
       nascimento: '',
       endereco: '',
       telefone: '',
       email: '',
-      salario: '',
+      salario: 0,
       idSetor: { idSetor: '', nameSetor: '' }
        });
   }
+}
 }

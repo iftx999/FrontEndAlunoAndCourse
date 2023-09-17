@@ -19,7 +19,7 @@ export class ProfessorComponent implements OnInit {
   professor$: Observable<Professor[]> | null = null;
 
   constructor(
-    private coursesService: ProfessorService,
+    private professorService: ProfessorService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ProfessorComponent implements OnInit {
   }
 
   refresh() {
-    this.professor$ = this.coursesService.list()
+    this.professor$ = this.professorService.list()
       .pipe(
         catchError(error => {
           this.onError('Erro ao carregar cursos.');
@@ -56,22 +56,21 @@ export class ProfessorComponent implements OnInit {
 
   onRemove(professor: Professor) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse Funcionário?',
+      data: 'Tem certeza que deseja remover esse colaborador?',
     });
-  
+
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        const idProfessor = professor.idProfessor!; // Usando o operador ! para afirmar que não é nulo
-        this.coursesService.remove(idProfessor).subscribe(
+        this.professorService.remove(professor.idProfessor).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Funcionário removido com sucesso!', 'X', {
+            this.snackBar.open('Colaborador removido com sucesso!', 'X', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover curso.')
+          () => this.onError('Erro ao tentar remover aluno.')
         );
       }
     });

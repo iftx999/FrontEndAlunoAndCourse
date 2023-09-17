@@ -23,7 +23,7 @@ export class ProfessorService {
       );
   }
 
-  loadById(id: string) {
+  loadById(id: number) {
     return this.httpClient.get<Professor>(`${this.API}/${id}`);
   }
 
@@ -51,7 +51,7 @@ export class ProfessorService {
     return this.httpClient.put<Professor>(`${this.API}/${record.idProfessor}`, record).pipe(first());
   }
 
-  remove(id: string) {
+  remove(id: number) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 
