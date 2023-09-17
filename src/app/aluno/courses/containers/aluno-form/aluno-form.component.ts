@@ -18,7 +18,7 @@ export class AlunoFormComponent implements OnInit {
   totalAluno: number = 0;
   cursos: Course[] | undefined;
   isLoading: boolean = false;
-
+//correcao
   alunoForm = this.formBuilder.group({
     idAluno: [0],
     idade: [0],
