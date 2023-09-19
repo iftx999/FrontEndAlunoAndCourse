@@ -18,14 +18,14 @@ export class ProfessorFormComponent implements OnInit {
 
 
   professorForm = this.formBuilder.group({
-    idProfessor: [0],
+    idProfessor: [0, Validators.required],
     nameProf: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    nascimento: ['', [Validators.required]],
-    endereco: ['', [Validators.required]],
-    telefone: ['', [Validators.required]],
+    nascimento: ['',],
+    endereco: [''],
+    telefone: [''],
     email: ['', [Validators.required]],
     salario: [0, [Validators.required]],
-    idSetor: [undefined, [Validators.required]] // Agora inicializado com undefined
+    idSetor: [null, [Validators.required]] // Agora inicializado com undefined
   });
   constructor(
      private formBuilder: FormBuilder,
@@ -63,7 +63,6 @@ export class ProfessorFormComponent implements OnInit {
     if (this.professorForm.valid) {
       
       const dadosProfessor = {
-        idProfessor: null,
 
         
         ...this.professorForm.value
@@ -71,7 +70,7 @@ export class ProfessorFormComponent implements OnInit {
 
       this.service.save(dadosProfessor).subscribe(
         
-        result => this.onSuccess(),
+        () => this.onSuccess(),
         
         error => this.onError()
         
