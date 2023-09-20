@@ -27,18 +27,13 @@ export class ProfessorService {
     return this.httpClient.get<Professor>(`${this.API}/${id}`);
   }
 
-  save(record: Partial<Professor>) {
-     console.log(record);
-           console.log('cai aqui antes do if');
 
+  save(record: Partial<Professor>) {
+    // console.log(record);
     if (record.idProfessor) {
-      console.log('cai aqui');
       // console.log('update');
       return this.update(record);
-    
-        }
-        console.log('cai aqui create');
-
+    }
     // console.log('create');
     return this.create(record);
   }
