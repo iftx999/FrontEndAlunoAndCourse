@@ -78,7 +78,9 @@ onSubmit(): void {
     // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
   }
 }
-  onCancel() {
+
+
+onCancel() {
     this.location.back();
   }
 
