@@ -6,7 +6,7 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfessorListComponent } from './components/courses-list/professor-list.component';
 import { ProfessorFormComponent } from './containers/course-form/professor-form.component';
-import { ProfessorComponent } from './containers/courses/professor.component';
+import { ProfessorComponent } from './containers/professor/professor.component';
 import { ProfessorRoutingModule } from './professor-routing.module';
 import { NgxMaskModule } from 'ngx-mask';
 

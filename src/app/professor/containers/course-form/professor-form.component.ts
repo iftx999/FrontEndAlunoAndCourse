@@ -18,16 +18,15 @@ export class ProfessorFormComponent implements OnInit {
 
 
   professorForm = this.formBuilder.group({
-    idProfessor: [''],
-    nameProf: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-    nascimento: ['', [Validators.required]],
-    endereco: ['', [Validators.required]],
-    telefone: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    salario: ['', [Validators.required]],
-    idSetor: [null, [Validators.required]]
+    idProfessor: [0],  // Inicializado com null em vez de 0
+    nameProf: [''],   // Inicializado com uma string vazia em vez de null
+    nascimento: [''], // Inicializado com uma string vazia em vez de null
+    endereco: [''],   // Inicializado com uma string vazia em vez de null
+    telefone: [''],   // Inicializado com uma string vazia em vez de null
+    email: [''],      // Inicializado com uma string vazia em vez de null
+    salario: [0],     // Inicializado com 0 em vez de null
+    idSetor: [null]   // Inicializado com null em vez de 
   });
-
   constructor(
      private formBuilder: FormBuilder,
     private service: ProfessorService,
@@ -58,33 +57,30 @@ export class ProfessorFormComponent implements OnInit {
 
   }
   
+onSubmit(): void {
+  if (this.professorForm.valid) {
+    const dadosProfessor: Partial<Professor> = {
+      idProfessor: this.professorForm.value.idProfessor as number,
+      nameProf: this.professorForm.value.nameProf || undefined,
+      nascimento: this.professorForm.value.nascimento || undefined,
+      endereco: this.professorForm.value.endereco || undefined,
+      telefone: this.professorForm.value.telefone || undefined,
+      email: this.professorForm.value.email || undefined,
+      salario: this.professorForm.value.salario || undefined,
+      idSetor: this.professorForm.value.idSetor || undefined,
+    };
 
-
-  onSubmit(): void {
-    if (this.professorForm.valid) {
-      
-      const dadosProfessor = {
-        
-        ...this.professorForm.value
-      };
-
-      this.service.save(dadosProfessor).subscribe(
-        
-        result => this.onSuccess(),
-        
-        error => this.onError()
-        
-        
-      );
-
-    } else {
-      // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
-    }
-    console.log(this.professorForm);
-
+    this.service.save(dadosProfessor).subscribe(
+      () => this.onSuccess(),
+      error => this.onError()
+    );
+  } else {
+    // Exiba uma mensagem de erro ou tome a ação apropriada se o formulário for inválido
   }
+}
 
-  onCancel() {
+
+onCancel() {
     this.location.back();
   }
 

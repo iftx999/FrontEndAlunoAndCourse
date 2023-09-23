@@ -23,22 +23,17 @@ export class ProfessorService {
       );
   }
 
-  loadById(id: string) {
+  loadById(id: number) {
     return this.httpClient.get<Professor>(`${this.API}/${id}`);
   }
 
-  save(record: Partial<Professor>) {
-     console.log(record);
-           console.log('cai aqui antes do if');
 
+  save(record: Partial<Professor>) {
+    // console.log(record);
     if (record.idProfessor) {
-      console.log('cai aqui');
       // console.log('update');
       return this.update(record);
-    
-        }
-        console.log('cai aqui create');
-
+    }
     // console.log('create');
     return this.create(record);
   }
@@ -51,7 +46,7 @@ export class ProfessorService {
     return this.httpClient.put<Professor>(`${this.API}/${record.idProfessor}`, record).pipe(first());
   }
 
-  remove(id: string) {
+  remove(id: number) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 
