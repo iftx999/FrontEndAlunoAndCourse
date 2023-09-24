@@ -27,4 +27,15 @@
           </mat-card>
         </mat-grid-tile>
         </mat-grid-list>
+
+       <!-- grafico.component.html -->
+<div style="display: block;">
+  <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [chartType]="barChartType">
+  </canvas>
+</div>
+
+        
 </div>

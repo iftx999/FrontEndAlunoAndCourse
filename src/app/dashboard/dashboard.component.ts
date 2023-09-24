@@ -18,6 +18,9 @@ export class DashboardComponent implements OnInit {
   quantidadeAlunos: number | undefined;
 
   quantidadeCourse: number | undefined;
+  public barChartLabels: string[] = [];
+  public barChartData: any[] = [];
+  public barChartType = 'bar';
 
 
 
@@ -48,6 +51,18 @@ export class DashboardComponent implements OnInit {
       .subscribe(quantidadeC => {
         this.quantidadeCourse = quantidadeC;
       });
+      this.service.getTotalAlunos().subscribe((data: number) => {
+        // Verifique se os dados são um array e contêm elementos
+        if (Array.isArray(data) && data.length > 0) {
+          // Processar os dados recebidos do backend e atribuir às variáveis do gráfico
+          this.barChartLabels = data.map(item => item.label);
+          this.barChartData[0].data = data.map(item => item.value);
+        } else {
+          // Trate o caso em que os dados estão vazios ou não são um array válido
+          console.error('Dados inválidos recebidos do servidor.');
+        }
+      });
+      
   }
   
 }

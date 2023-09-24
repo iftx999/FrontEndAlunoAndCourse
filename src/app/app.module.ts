@@ -12,6 +12,8 @@ import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatSidenavModule,
     MatListModule,
     NgxMaskModule,
+    NgChartsModule,
     NgxMaskModule.forRoot()
 
     
