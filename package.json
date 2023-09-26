@@ -24,6 +24,7 @@
     "@fullcalendar/angular": "^6.1.8",
     "@fullcalendar/core": "^6.1.8",
     "angular": "^1.8.3",
+    "chart.js": "^3.5.1",
     "file-saver": "^2.0.5",
     "fullcalendar": "^6.1.8",
     "ngx-mask": "^13.1.13",
