@@ -18,9 +18,14 @@ export class DashboardComponent implements OnInit {
   quantidadeAlunos: number | undefined;
 
   quantidadeCourse: number | undefined;
-  public barChartLabels: string[] = [];
-  public barChartData: any[] = [];
-  public barChartType = 'bar';
+  public barChartLabels:string[] = ['2014', '2015', '2016'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+
+  public barChartData:any[] = [
+      {data: [32131, 3432, 543], label:'Test 1'},
+      {data: [54353, 432, 768], label:'Test 2'}
+  ];
 
 
 
