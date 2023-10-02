@@ -5,6 +5,7 @@ import { AlunoService } from '../aluno/courses/services/aluno.service';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { CoursesService } from '../courses/services/courses.service';
+import { Chart } from 'chart.js';
 
 
 @Component({
@@ -14,17 +15,18 @@ import { CoursesService } from '../courses/services/courses.service';
 })
 export class DashboardComponent implements OnInit {
   
+  professor: any[] = [];
   
   quantidadeAlunos: number | undefined;
 
   quantidadeCourse: number | undefined;
-  public barChartLabels:string[] = ['2014', '2015', '2016'];
+  public barChartLabels:string[] = ['Salário', 'Salário', 'Salário'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
 
   public barChartData:any[] = [
-      {data: [32131, 3432, 543], label:'Test 1'},
-      {data: [54353, 432, 768], label:'Test 2'}
+      {data: [32131, 3432, 543], label:'Colaborador 1'},
+      {data: [54353, 432, 768], label:'Colaborador 2'}
   ];
 
 
@@ -56,19 +58,56 @@ export class DashboardComponent implements OnInit {
       .subscribe(quantidadeC => {
         this.quantidadeCourse = quantidadeC;
       });
-      this.service.getTotalAlunos().subscribe((data: number) => {
-        // Verifique se os dados são um array e contêm elementos
-        if (Array.isArray(data) && data.length > 0) {
-          // Processar os dados recebidos do backend e atribuir às variáveis do gráfico
-          this.barChartLabels = data.map(item => item.label);
-          this.barChartData[0].data = data.map(item => item.value);
-        } else {
-          // Trate o caso em que os dados estão vazios ou não são um array válido
-          console.error('Dados inválidos recebidos do servidor.');
-        }
+      this.service.list().subscribe((data: any[]) => {
+        this.professor = data;
+        this.createBarChart();
       });
+    }
+  
+  
+    createBarChart(): void {
+      // Código para criar o gráfico de barras usando Chart.js
+        const canvas = document.getElementById('barChart') as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d');
       
+        const nomes = this.professor.map(professor=> professor.nome);
+        const salarios = this.professor.map(professor => professor.salario);
+      
+        if (ctx) {
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nomes,
+            datasets: [{
+              label: 'Salário',
+              data: salarios,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Salário'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Colaboradores'
+                }
+              }
+            }
+          }
+        });
+      }
+    }
   }
   
-}
+  
+      
 
