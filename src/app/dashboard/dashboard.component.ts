@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { CoursesService } from '../courses/services/courses.service';
 import { Chart } from 'chart.js';
+import { ProfessorService } from '../professor/services/professor.service';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit {
     private courseService: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private profService: ProfessorService,
     private route: ActivatedRoute) {
     //this.form
   }
@@ -58,7 +60,8 @@ export class DashboardComponent implements OnInit {
       .subscribe(quantidadeC => {
         this.quantidadeCourse = quantidadeC;
       });
-      this.service.list().subscribe((data: any[]) => {
+      this.profService.list().subscribe((data: any[]) => {
+        console.log("cai aqui no list ");
         this.professor = data;
         this.createBarChart();
       });
@@ -66,21 +69,25 @@ export class DashboardComponent implements OnInit {
   
   
     createBarChart(): void {
+      console.log("cai no create bar chart");
+
       // Código para criar o gráfico de barras usando Chart.js
         const canvas = document.getElementById('barChart') as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');
       
-        const nomes = this.professor.map(professor=> professor.nome);
-        const salarios = this.professor.map(professor => professor.salario);
-      
+        const nome = this.professor.map(professor=> professor.nameProf);
+        const salario = this.professor.map(professor => professor.salario);
+        console.log(nome);
+        console.log(salario);
         if (ctx) {
+        console.log("cai aqui no list f ctx ");
         new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: nomes,
+            labels: nome,
             datasets: [{
               label: 'Salário',
-              data: salarios,
+              data: salario,
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
