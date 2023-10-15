@@ -7,9 +7,10 @@
 
    <!-- Name Column -->
    <ng-container matColumnDef="cpf">
-    <mat-header-cell *matHeaderCellDef>cpf</mat-header-cell>
-    <mat-cell *matCellDef="let aluno">{{ aluno.cpf }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>CPF</mat-header-cell>
+    <mat-cell *matCellDef="let aluno">{{ formatarCPF(aluno.cpf) }}</mat-cell>
   </ng-container>
+  
 
   <ng-container matColumnDef="idCourse">
     <mat-header-cell *matHeaderCellDef>Course</mat-header-cell>

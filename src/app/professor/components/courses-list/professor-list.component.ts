@@ -20,11 +20,13 @@ export class ProfessorListComponent implements OnInit {
 
   formatDate(date: string): string {
     if (date) {
-      return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
+      // Supondo que date seja no formato "DDMMYYYY"
+      const formattedDate = date.substring(0, 2) + '/' + date.substring(2, 4) + '/' + date.substring(4);
+      return this.datePipe.transform(formattedDate, 'dd/MM/yyyy') || '';
     }
     return '';
   }
-
+  
   ngOnInit(): void { }
 
 
