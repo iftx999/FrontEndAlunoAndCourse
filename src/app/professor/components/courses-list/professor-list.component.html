@@ -11,9 +11,10 @@
   </ng-container>
 
   <ng-container matColumnDef="nascimento">
-    <mat-header-cell *matHeaderCellDef>Data de nascimento </mat-header-cell>
-    <mat-cell *matCellDef="let professor">{{ professor.nascimento }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>Data de nascimento</mat-header-cell>
+    <mat-cell *matCellDef="let professor">{{ formatDate(professor.nascimento) }}</mat-cell>
   </ng-container>
+  
   
 
   <!-- Actions Column -->

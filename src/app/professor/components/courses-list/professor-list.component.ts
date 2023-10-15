@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import { Professor } from '../../model/professor';
 @Component({
@@ -15,9 +16,17 @@ export class ProfessorListComponent implements OnInit {
 
   readonly displayedColumns = ['nameProf', 'email', 'nascimento','actions'];
 
-  constructor() { }
+  constructor(private datePipe: DatePipe) { }
+
+  formatDate(date: string): string {
+    if (date) {
+      return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
+    }
+    return '';
+  }
 
   ngOnInit(): void { }
+
 
   onAdd() {
     this.add.emit(true);

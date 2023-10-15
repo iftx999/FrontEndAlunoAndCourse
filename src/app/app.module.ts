@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgChartsModule } from 'ng2-charts';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -20,6 +22,7 @@ import { NgChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { NgChartsModule } from 'ng2-charts';
     
     
   ],
-  providers: [],
+  providers: [  DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
