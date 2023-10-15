@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -19,7 +21,8 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
     MatCardModule,
     AppMaterialModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    NgChartsModule
   ]
 })
 export class DashboardModule { 

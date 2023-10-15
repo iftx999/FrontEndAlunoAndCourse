@@ -41,7 +41,7 @@
         <input matInput placeholder="Email" formControlName="email" #email />
         <mat-hint align="end">{{ email.value?.length || 0 }} / 100</mat-hint>
         <mat-error *ngIf="professorForm.get('email')?.invalid">{{
-          getErrorMessage("nome")
+          getErrorMessage("Email")
         }}</mat-error>
       </mat-form-field>
 

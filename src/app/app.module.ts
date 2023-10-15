@@ -12,12 +12,17 @@ import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgChartsModule } from 'ng2-charts';
+import { DatePipe } from '@angular/common';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -31,12 +36,14 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatSidenavModule,
     MatListModule,
     NgxMaskModule,
+    NgChartsModule,
     NgxMaskModule.forRoot()
 
     
     
   ],
-  providers: [],
+  providers: [  DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

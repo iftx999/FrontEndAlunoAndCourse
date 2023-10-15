@@ -18,14 +18,14 @@ export class ProfessorFormComponent implements OnInit {
 
 
   professorForm = this.formBuilder.group({
-    idProfessor: [0],  // Inicializado com null em vez de 0
-    nameProf: [''],   // Inicializado com uma string vazia em vez de null
-    nascimento: [''], // Inicializado com uma string vazia em vez de null
-    endereco: [''],   // Inicializado com uma string vazia em vez de null
-    telefone: [''],   // Inicializado com uma string vazia em vez de null
-    email: [''],      // Inicializado com uma string vazia em vez de null
-    salario: [0],     // Inicializado com 0 em vez de null
-    idSetor: [null]   // Inicializado com null em vez de 
+      idProfessor: [0],
+  nameProf: [''],
+  nascimento: [''],
+  endereco: [''],
+  email: [''],      // Corrija o campo email aqui
+  salario: [0],
+  telefone: [''],   // Corrija o campo telefone aqui
+  idSetor: [null]  // Inicializado com null em vez de 
   });
   constructor(
      private formBuilder: FormBuilder,
